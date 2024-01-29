@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
-    <title>
-        {{ block "title" . }}
-		<link rel="stylesheet" href="asset/style.css">
-		{{ block "sttylesheet"}}
-            {{ .Site.Title }}
-        {{ end }}
-    </title>
-</head>
-<body>
-    {{ block "main" . }}
-	<script> src="asset/script.js"</script>
-        <!-- The part of the page that begins to differ between templates -->
+    <title>{{ block "title" . }}
+      <!-- Blocks may include default content. -->
+      {{ .Site.Title }}
+    {{ end }}</title>
+    <link rel="stylesheet" href="asset/style.css">
+    {{ define "stylesheet" }}
+        
     {{ end }}
-</body>
+  </head>
+  <body>
+    <!-- Code that all your templates share, like a header -->
+    {{ block "main" . }}
+    
+      <!-- The part of the page that begins to differ between templates -->
+    {{ end }}
+    {{ block "footer" . }}
+    <!-- More shared code, perhaps a footer but that can be overridden if need be in  -->
+    {{ end }}
+  </body>
 </html>
